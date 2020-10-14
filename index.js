@@ -1,7 +1,16 @@
 const customExpress = require('./config/customExpress')
+const db = require('./db/connection')
 
-const app = customExpress()
+db.connect((error) => {
+  if(error){
+    console.log('Error database:', error)
+  }else{
+    console.log('Database success connection!')
+    
+    const app = customExpress()
 
-app.listen(3000, () => {
-  console.log('connection port 3000')
+    app.listen(3000, () => {
+      console.log('connection port 3000')
+    })
+  }
 })
